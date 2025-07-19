@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visual Prompt Builder</title>
+    <title>Visual Prompt Builder Pro</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
     <div class="container">
         <header class="header">
             <h1>Visual Prompt Builder</h1>
-            <p>Create perfect AI prompts with guided assistance - no experience needed!</p>
+            <p>Create perfect AI prompts with guided assistance - or let creative freedom surprise you!</p>
         </header>
 
         <div class="main-grid">
@@ -47,6 +47,10 @@
                             <option value="Educational diagrams">Educational diagrams</option>
                             <option value="Website or app mockups">Website or app mockups</option>
                             <option value="Product visualization">Product visualization</option>
+                            <option value="Fantasy concept art">Fantasy concept art</option>
+                            <option value="Portrait photography">Portrait photography</option>
+                            <option value="Abstract digital art">Abstract digital art</option>
+                            <option value="Movie poster design">Movie poster design</option>
                         </select>
                     </div>
                 </div>
@@ -77,6 +81,14 @@
                             <option value="Indoor home setting">Indoor home setting</option>
                             <option value="Underwater scene">Underwater scene</option>
                             <option value="Space or cosmic setting">Space or cosmic setting</option>
+                            <option value="Ancient ruins">Ancient ruins</option>
+                            <option value="Cyberpunk cityscape">Cyberpunk cityscape</option>
+                            <option value="Tropical paradise">Tropical paradise</option>
+                            <option value="Winter wonderland">Winter wonderland</option>
+                            <option value="Desert landscape">Desert landscape</option>
+                            <option value="Forest clearing">Forest clearing</option>
+                            <option value="Mountain peak">Mountain peak</option>
+                            <option value="Abandoned warehouse">Abandoned warehouse</option>
                         </select>
                     </div>
                 </div>
@@ -232,6 +244,54 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="option-group">
+                                <div class="option-group-title">🔮 Fantasy & Sci-Fi</div>
+                                <div class="option-item" data-value="magical creatures" data-group="fantasy">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Magical creatures</div>
+                                        <div class="option-description">Dragons, unicorns, phoenixes</div>
+                                    </div>
+                                </div>
+                                <div class="option-item" data-value="robots" data-group="scifi">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Robots</div>
+                                        <div class="option-description">Mechanical beings, androids</div>
+                                    </div>
+                                </div>
+                                <div class="option-item" data-value="spaceships" data-group="scifi">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Spaceships</div>
+                                        <div class="option-description">Futuristic vehicles</div>
+                                    </div>
+                                </div>
+                                <div class="option-item" data-value="crystals" data-group="fantasy">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Crystals</div>
+                                        <div class="option-description">Mystical gems, minerals</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="option-group">
+                                <div class="option-group-title">📐 Abstract</div>
+                                <div class="option-item" data-value="geometric shapes" data-group="abstract">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Geometric shapes</div>
+                                        <div class="option-description">Circles, triangles, polygons</div>
+                                    </div>
+                                </div>
+                                <div class="option-item" data-value="abstract forms" data-group="abstract">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Abstract forms</div>
+                                        <div class="option-description">Non-representational shapes</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -279,6 +339,20 @@
                                         <div class="option-description">Fun, animated look</div>
                                     </div>
                                 </div>
+                                <div class="option-item" data-value="detailed hyperrealistic" data-group="realism">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Hyperrealistic</div>
+                                        <div class="option-description">Ultra-detailed, beyond photography</div>
+                                    </div>
+                                </div>
+                                <div class="option-item" data-value="cel-shaded animation" data-group="realism">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Cel-shaded</div>
+                                        <div class="option-description">Anime/cartoon rendering</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="option-group">
                                 <div class="option-group-title">🌈 Colors</div>
@@ -308,6 +382,13 @@
                                     <div>
                                         <div>Earth tones</div>
                                         <div class="option-description">Browns, greens, natural colors</div>
+                                    </div>
+                                </div>
+                                <div class="option-item" data-value="neon cyberpunk colors" data-group="colors">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Neon cyberpunk</div>
+                                        <div class="option-description">Electric blues, magentas, greens</div>
                                     </div>
                                 </div>
                             </div>
@@ -342,6 +423,44 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="option-group">
+                                <div class="option-group-title">🎭 Art Styles</div>
+                                <div class="option-item" data-value="vintage retro style" data-group="art">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Vintage retro</div>
+                                        <div class="option-description">Classic, nostalgic aesthetic</div>
+                                    </div>
+                                </div>
+                                <div class="option-item" data-value="minimalist clean design" data-group="art">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Minimalist</div>
+                                        <div class="option-description">Clean, simple, elegant</div>
+                                    </div>
+                                </div>
+                                <div class="option-item" data-value="painterly brushstrokes" data-group="art">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Painterly</div>
+                                        <div class="option-description">Visible brush strokes, artistic</div>
+                                    </div>
+                                </div>
+                                <div class="option-item" data-value="steampunk aesthetic" data-group="art">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Steampunk</div>
+                                        <div class="option-description">Victorian-era industrial</div>
+                                    </div>
+                                </div>
+                                <div class="option-item" data-value="art nouveau style" data-group="art">
+                                    <div class="option-checkbox"></div>
+                                    <div>
+                                        <div>Art nouveau</div>
+                                        <div class="option-description">Elegant, organic curves</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -360,14 +479,19 @@
                     </div>
                     <div class="input-container">
                         <select id="structure">
-                            <option value="">Select image format...</option>
-                            <option value="vertical portrait format">📱 Vertical (good for phones, social media)</option>
-                            <option value="horizontal landscape format">🖥️ Horizontal (good for computers, TV)</option>
-                            <option value="square format">⬜ Square (good for Instagram, profile pics)</option>
-                            <option value="close-up shot">🔍 Close-up (focus on details)</option>
-                            <option value="wide shot showing full scene">📷 Wide shot (show everything)</option>
-                            <option value="centered composition">🎯 Centered (subject in middle)</option>
-                            <option value="rule of thirds composition">📐 Rule of thirds (artistic placement)</option>
+                            <option value="">Select composition style...</option>
+                            <option value="vertical portrait format">📱 Vertical portrait (9:16)</option>
+                            <option value="horizontal landscape format">🖥️ Horizontal landscape (16:9)</option>
+                            <option value="square format">⬜ Square format (1:1)</option>
+                            <option value="close-up shot">🔍 Close-up shot</option>
+                            <option value="wide shot showing full scene">📷 Wide establishing shot</option>
+                            <option value="centered composition">🎯 Centered composition</option>
+                            <option value="rule of thirds composition">📐 Rule of thirds</option>
+                            <option value="bird's eye view">🦅 Bird's eye view</option>
+                            <option value="low angle perspective">⬆️ Low angle (looking up)</option>
+                            <option value="dutch angle composition">🔄 Dutch angle (tilted)</option>
+                            <option value="macro photography style">🔬 Macro (extreme close-up)</option>
+                            <option value="panoramic view">🌄 Panoramic view</option>
                         </select>
                     </div>
                 </div>
@@ -398,6 +522,9 @@
                         <div class="suggestion-pill" onclick="addSuggestion('professional business attire')">👔 Business attire</div>
                         <div class="suggestion-pill" onclick="addSuggestion('surrounded by flowers')">🌸 With flowers</div>
                         <div class="suggestion-pill" onclick="addSuggestion('in motion, dynamic pose')">🏃 In motion</div>
+                        <div class="suggestion-pill" onclick="addSuggestion('with intricate details and perfect lighting')">✨ Professional quality</div>
+                        <div class="suggestion-pill" onclick="addSuggestion('featuring dynamic poses and expressions')">🎭 Dynamic poses</div>
+                        <div class="suggestion-pill" onclick="addSuggestion('with rich textures and atmospheric depth')">🌊 Rich textures</div>
                     </div>
                 </div>
 
@@ -426,6 +553,8 @@
                         <div class="suggestion-pill" onclick="addConstraint('no blurry background')">🚫 No blur</div>
                         <div class="suggestion-pill" onclick="addConstraint('avoid dark or scary elements')">🚫 Nothing scary</div>
                         <div class="suggestion-pill" onclick="addConstraint('no nudity or inappropriate content')">🚫 Keep it clean</div>
+                        <div class="suggestion-pill" onclick="addConstraint('avoid oversaturation')">🚫 No oversaturation</div>
+                        <div class="suggestion-pill" onclick="addConstraint('no distorted proportions')">🚫 Proper proportions</div>
                     </div>
                 </div>
 
@@ -436,9 +565,18 @@
                     <button class="action-btn save-btn" onclick="savePrompt()">
                         💾 Save Prompt
                     </button>
-                    <button class="generate-btn" onclick="generatePrompt()" style="margin-top: 0; flex: 1;">
+                    <button class="generate-btn" style="margin-top: 0; flex: 1;">
                         🚀 Create Perfect Prompt
                     </button>
+                </div>
+                
+                <!-- Creative Freedom Hint -->
+                <div class="creative-freedom-hint" id="creativeFreedomHint">
+                    <div class="hint-header">
+                    </div>
+                    <div class="hint-text"><strong>💡Pro Tip:</strong>
+                        Leave fields empty and click generate for <span class="highlight">Creative Freedom</span> mode - let AI surprise you with amazing combinations!
+                    </div>
                 </div>
             </div>
 
@@ -451,7 +589,7 @@
                 </div>
                 
                 <div class="prompt-output" id="promptDisplay" onclick="enableEditMode()">
-                    Start selecting options to build your perfect AI prompt automatically!
+                    Click "Create Perfect Prompt" to generate your AI prompt! Leave fields empty for Creative Freedom mode.
                 </div>
 
                 <div class="edit-mode" id="editMode" style="display: none;">
