@@ -247,62 +247,66 @@ function restoreFormData(data) {
 function enableCreativeFreedom() {
     creativeFreedom = true;
     
-    // Randomly select options
-    randomizeSelections();
-    
-    // Generate with animation
-    generatePromptWithAnimation();
-    
-    // Show feedback
+    // Show feedback first
     const btn = document.querySelector('.generate-btn');
     btn.innerHTML = '🎨 Unleashing Creativity...';
     
+    // Randomly select options
+    randomizeSelections();
+    
+    // Generate the prompt immediately after randomization
     setTimeout(() => {
-        btn.innerHTML = '🚀 Create Perfect Prompt';
-        creativeFreedom = false;
-    }, 3000);
+        generatePrompt();
+        
+        // Reset button after generation
+        setTimeout(() => {
+            btn.innerHTML = '🚀 Create Perfect Prompt';
+            creativeFreedom = false;
+        }, 1500);
+    }, 500);
 }
 
 function randomizeSelections() {
-    // Random intent
-    const shuffledIntents = [...creativeOptions.intent].sort(() => Math.random() - 0.5);
-    const randomIntent = shuffledIntents[Math.floor(Math.random() * shuffledIntents.length)];
-    document.getElementById('intent').value = randomIntent;
+    // Use current timestamp for better randomness
+    const seed = Date.now();
     
-    // Random context  
-    const shuffledContexts = [...creativeOptions.context].sort(() => Math.random() - 0.5);
-    const randomContext = shuffledContexts[Math.floor(Math.random() * shuffledContexts.length)];
-    document.getElementById('context').value = randomContext;
+    // Random intent - use different method
+    const intentOptions = [...creativeOptions.intent];
+    const randomIntentIndex = Math.floor((Math.random() + seed * 0.001) % 1 * intentOptions.length);
+    document.getElementById('intent').value = intentOptions[randomIntentIndex];
     
-    // Random structure
-    const shuffledStructures = [...creativeOptions.structure].sort(() => Math.random() - 0.5);
-    const randomStructure = shuffledStructures[Math.floor(Math.random() * shuffledStructures.length)];
-    document.getElementById('structure').value = randomStructure;
+    // Random context - use different method
+    const contextOptions = [...creativeOptions.context];
+    const randomContextIndex = Math.floor((Math.random() + seed * 0.002) % 1 * contextOptions.length);
+    document.getElementById('context').value = contextOptions[randomContextIndex];
     
-    // Random subjects (1-3 items) - better randomization
+    // Random structure - use different method
+    const structureOptions = [...creativeOptions.structure];
+    const randomStructureIndex = Math.floor((Math.random() + seed * 0.003) % 1 * structureOptions.length);
+    document.getElementById('structure').value = structureOptions[randomStructureIndex];
+    
+    // Random subjects (1-3 items) - completely different approach
     selectedItems.subjects.clear();
     const subjectCount = Math.floor(Math.random() * 3) + 1;
-    const shuffledSubjects = [...creativeOptions.subjects];
-    // Fisher-Yates shuffle for true randomness
-    for (let i = shuffledSubjects.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledSubjects[i], shuffledSubjects[j]] = [shuffledSubjects[j], shuffledSubjects[i]];
-    }
+    const availableSubjects = [...creativeOptions.subjects];
+    
     for (let i = 0; i < subjectCount; i++) {
-        selectedItems.subjects.add(shuffledSubjects[i]);
+        if (availableSubjects.length === 0) break;
+        const randomIndex = Math.floor(Math.random() * availableSubjects.length);
+        selectedItems.subjects.add(availableSubjects[randomIndex]);
+        availableSubjects.splice(randomIndex, 1); // Remove to avoid duplicates
     }
     
-    // Random styles (2-4 items) - better randomization
+    // Random styles (2-4 items) - completely different approach
     selectedItems.style.clear();
     const styleCount = Math.floor(Math.random() * 3) + 2;
-    const shuffledStyles = [...creativeOptions.style];
-    // Fisher-Yates shuffle for true randomness
-    for (let i = shuffledStyles.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledStyles[i], shuffledStyles[j]] = [shuffledStyles[j], shuffledStyles[i]];
-    }
+    const availableStyles = [...creativeOptions.style];
+    
     for (let i = 0; i < styleCount; i++) {
-        selectedItems.style.add(shuffledStyles[i]);
+        if (availableStyles.length === 0) break;
+        const randomIndex = Math.floor(Math.random() * availableStyles.length);
+        selectedItems.style.add(availableStyles[randomIndex]);
+        availableStyles.splice(randomIndex, 1); // Remove to avoid duplicates
     }
     
     // Update visual selections in dropdowns
@@ -310,7 +314,7 @@ function randomizeSelections() {
     updateSelectedDisplay('subjects');
     updateSelectedDisplay('style');
     
-    // More diverse random details
+    // Completely random details with timestamp
     const creativeDetails = [
         "with intricate details and perfect lighting",
         "featuring dynamic poses and expressions", 
@@ -326,15 +330,19 @@ function randomizeSelections() {
         "showcasing innovative design elements",
         "with perfect balance and harmony",
         "featuring bold creative choices",
-        "with mesmerizing visual storytelling"
+        "with mesmerizing visual storytelling",
+        "with ethereal beauty and grace",
+        "featuring cutting-edge design",
+        "with immersive storytelling elements"
     ];
     
-    // Use timestamp to ensure different selection each time
-    const timeBasedIndex = (Date.now() % creativeDetails.length);
-    const randomDetailIndex = (timeBasedIndex + Math.floor(Math.random() * creativeDetails.length)) % creativeDetails.length;
-    const randomDetail = creativeDetails[randomDetailIndex];
-    document.getElementById('details').value = randomDetail;
+    // Use multiple randomness sources
+    const randomSeed = (seed % 1000) / 1000;
+    const randomIndex = Math.floor((Math.random() + randomSeed) % 1 * creativeDetails.length);
+    document.getElementById('details').value = creativeDetails[randomIndex];
     updateCharCounter('details', 'detailsCounter', 400);
+    
+    console.log('Creative Freedom activated - generated unique combination'); // Debug log
 }
 
 function updateDropdownSelections() {
