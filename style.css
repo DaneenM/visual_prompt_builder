@@ -117,6 +117,7 @@ body {
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .section-icon {
@@ -128,12 +129,15 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 1rem;
+    flex-shrink: 0;
 }
 
 .section-title {
     font-size: 1.125rem;
     font-weight: 600;
     color: var(--text-primary);
+    flex: 1;
+    min-width: 200px;
 }
 
 .info-icon {
@@ -147,8 +151,14 @@ body {
     justify-content: center;
     font-size: 0.75rem;
     cursor: help;
-    margin-left: auto;
     position: relative;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.info-icon:hover {
+    background: rgba(6, 182, 212, 0.3);
+    transform: scale(1.1);
 }
 
 .section-description {
@@ -228,6 +238,7 @@ body {
     font-size: 1.25rem;
     color: var(--primary);
     transition: transform 0.3s ease;
+    flex-shrink: 0;
 }
 
 .dropdown-arrow.open {
@@ -250,6 +261,7 @@ body {
     transform: translateY(-10px);
     transition: all 0.3s ease;
     pointer-events: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .multi-select-dropdown.open {
@@ -306,6 +318,10 @@ body {
     background: var(--primary);
     border-color: var(--primary);
     color: white;
+}
+
+.option-item.selected .option-checkbox::after {
+    content: '✓';
 }
 
 .option-description {
@@ -388,6 +404,18 @@ textarea {
     border-radius: 6px;
 }
 
+/* NEW: Mobile-friendly button container */
+.button-container {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.button-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
 .action-btn {
     padding: 0.875rem 1.75rem;
     border: none;
@@ -405,6 +433,7 @@ textarea {
     position: relative;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
+    flex: 1;
 }
 
 .clear-btn {
@@ -436,6 +465,7 @@ textarea {
 }
 
 .generate-btn {
+    width: 100%;
     padding: 1rem 2.5rem;
     background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
     border: none;
@@ -445,8 +475,6 @@ textarea {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4);
@@ -468,6 +496,25 @@ textarea {
     box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
 }
 
+.creative-freedom-hint {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.hint-text {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.highlight {
+    color: var(--accent);
+    font-weight: 600;
+}
+
 .preview-panel {
     position: sticky;
     top: 2rem;
@@ -477,7 +524,7 @@ textarea {
 .preview-header {
     display: flex;
     align-items: center;
-    justify-content: between;
+    justify-content: space-between;
     margin-bottom: 1.5rem;
     gap: 1rem;
 }
@@ -501,6 +548,7 @@ textarea {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex-shrink: 0;
 }
 
 .copy-btn:hover {
@@ -636,7 +684,56 @@ textarea {
     }
 }
 
-/* Tooltip */
+/* NEW: Mobile tooltip system */
+.tooltip-mobile {
+    position: fixed;
+    background: var(--tooltip-bg);
+    color: white;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: 320px;
+    word-wrap: break-word;
+    z-index: 1001;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    display: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.tooltip-mobile.show {
+    opacity: 1;
+    transform: scale(1);
+    display: block;
+    pointer-events: auto;
+}
+
+.tooltip-mobile::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 8px 0 8px;
+    border-color: var(--tooltip-bg) transparent transparent transparent;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Add visual feedback for active info icons */
+.info-icon.active {
+    background: rgba(6, 182, 212, 0.4) !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+}
+
+/* Legacy tooltip for desktop fallback */
 .tooltip {
     position: absolute;
     bottom: 120%;
@@ -652,6 +749,9 @@ textarea {
     pointer-events: none;
     transition: opacity 0.2s ease;
     z-index: 1001;
+    max-width: 250px;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 .tooltip::after {
@@ -662,10 +762,6 @@ textarea {
     transform: translateX(-50%);
     border: 4px solid transparent;
     border-top-color: var(--tooltip-bg);
-}
-
-.info-icon:hover .tooltip {
-    opacity: 1;
 }
 
 .floating-elements {
@@ -719,12 +815,308 @@ textarea {
 
 .saved-prompts-list::-webkit-scrollbar-thumb {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .preview-panel {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .header {
+        margin-bottom: 2rem;
+    }
+    
+    .header h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+    
+    .header p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .builder-panel, .preview-panel {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+    
+    .section {
+        margin-bottom: 2rem;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .section-title {
+        min-width: auto;
+        order: 1;
+    }
+    
+    .info-icon {
+        order: 2;
+        align-self: flex-end;
+        margin-top: -2rem;
+    }
+    
+    .section-icon {
+        order: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Mobile button improvements */
+    .button-container {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .button-row {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    .action-btn {
+        min-width: auto;
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .generate-btn {
+        padding: 1.25rem 2rem;
+        font-size: 1.1rem;
+        height: auto;
+        min-height: 56px;
+    }
+    
+    /* Multi-select dropdown mobile fixes */
+    .multi-select-dropdown {
+        max-height: 250px;
+        margin-top: 0.25rem;
+    }
+    
+    .option-item {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .option-group-title {
+        padding: 0 1rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Quick suggestions mobile layout */
+    .quick-suggestions {
+        gap: 0.75rem;
+    }
+    
+    .suggestion-pill {
+        padding: 0.75rem 1rem;
+        font-size: 0.8rem;
+        flex: 1;
+        text-align: center;
+        min-width: calc(50% - 0.375rem);
+    }
+    
+    /* Stats grid mobile */
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+    
+    .stat-card {
+        padding: 1rem 0.5rem;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+    }
+    
+    /* Preview panel mobile */
+    .preview-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .copy-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+    }
+    
+    .prompt-output {
+        padding: 1.5rem;
+        min-height: 150px;
+        font-size: 0.9rem;
+    }
+    
+    .edit-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .edit-actions .action-btn {
+        width: 100%;
+    }
+    
+    /* Modal mobile improvements */
+    .modal {
+        margin: 1rem;
+        padding: 1.5rem;
+        max-width: none;
+        width: calc(100% - 2rem);
+    }
+    
+    .save-form {
+        gap: 1.5rem;
+    }
+    
+    .save-form > div:last-child {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .save-form > div:last-child .action-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.75rem;
+    }
+    
+    .builder-panel, .preview-panel {
+        padding: 1rem;
+    }
+    
+    .section-description {
+        font-size: 0.8rem;
+    }
+    
+    .multi-select-display, select, textarea {
+        padding: 0.875rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .generate-btn {
+        font-size: 1rem;
+        padding: 1rem 1.5rem;
+    }
+    
+    .suggestion-pill {
+        min-width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Tooltip mobile positioning fixes */
+    .tooltip-mobile {
+        max-width: calc(100vw - 2rem);
+        font-size: 0.8rem;
+        padding: 0.875rem 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .stat-card {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* High DPI/Retina display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .section-icon {
+        background-size: 100% 100%;
+    }
+    
+    .floating-element {
+        filter: blur(0.5px);
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .floating-element {
+        animation: none;
+        opacity: 0.3;
+    }
+    
+    .header h1 {
+        animation: none;
+        background: linear-gradient(135deg, #8b5cf6, #06b6d4, #f59e0b);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+/* Dark mode support (in case users have custom dark mode toggles) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --tooltip-bg: rgba(0, 0, 0, 0.95);
+    }
+}
+
+/* Focus visible improvements for accessibility */
+.info-icon:focus-visible,
+.action-btn:focus-visible,
+.generate-btn:focus-visible,
+.copy-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --border: #4a5568;
+        --text-secondary: #cbd5e0;
+    }
+    
+    .action-btn,
+    .generate-btn {
+        border: 2px solid currentColor;
+    }
+}(--secondary));
     border-radius: 3px;
 }
 
 .saved-prompts-list::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
 }
+
+.saved-prompt-item {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border);
     border-radius: 12px;
@@ -878,18 +1270,4 @@ textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    border-radius: 4px;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .main-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .preview-panel {
-        position: static;
-    }
-}
+    background: linear-gradient(135deg, var(--primary), var

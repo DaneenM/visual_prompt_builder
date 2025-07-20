@@ -28,9 +28,8 @@
                     <div class="section-header">
                         <div class="section-icon">🎯</div>
                         <h3 class="section-title">What do you want to create?</h3>
-                        <div class="info-icon">
+                        <div class="info-icon" data-tooltip="INTENT: Define the purpose or emotional goal of the image. This sets the overall direction and helps the AI understand what you're trying to achieve - whether it's a realistic photo, artistic illustration, or functional design.">
                             ?
-                            <div class="tooltip">Choose what type of image you want to generate</div>
                         </div>
                     </div>
                     <div class="section-description">
@@ -59,9 +58,8 @@
                     <div class="section-header">
                         <div class="section-icon">🏙️</div>
                         <h3 class="section-title">Where does this take place?</h3>
-                        <div class="info-icon">
+                        <div class="info-icon" data-tooltip="CONTEXT: Set the narrative or environment around the subject. This creates the world and atmosphere where your image exists - the background story that gives meaning and depth to your creation.">
                             ?
-                            <div class="tooltip">The setting or environment for your image</div>
                         </div>
                     </div>
                     <div class="section-description">
@@ -97,9 +95,8 @@
                     <div class="section-header">
                         <div class="section-icon">👥</div>
                         <h3 class="section-title">What should be in the image?</h3>
-                        <div class="info-icon">
+                        <div class="info-icon" data-tooltip="SPECIFICS: Add vivid details to anchor the generation. Include specific subjects, their positions, actions, and key visual elements. This prevents the AI from making unwanted assumptions and gives you control over the core elements.">
                             ?
-                            <div class="tooltip">Select multiple subjects and objects for your image</div>
                         </div>
                     </div>
                     <div class="section-description">
@@ -300,9 +297,8 @@
                     <div class="section-header">
                         <div class="section-icon">🎨</div>
                         <h3 class="section-title">How should it look and feel?</h3>
-                        <div class="info-icon">
+                        <div class="info-icon" data-tooltip="STYLE & MOOD: Apply cinematic or aesthetic language to evoke a tone. This transforms your image from basic to compelling by defining the visual atmosphere, color palette, lighting style, and emotional feeling you want to convey.">
                             ?
-                            <div class="tooltip">The visual style and mood of your image</div>
                         </div>
                     </div>
                     <div class="section-description">
@@ -469,9 +465,8 @@
                     <div class="section-header">
                         <div class="section-icon">📐</div>
                         <h3 class="section-title">How should it be framed?</h3>
-                        <div class="info-icon">
+                        <div class="info-icon" data-tooltip="BLUEPRINT: Use consistent structure for compositional elements. This controls how your image is composed and framed - the camera angle, crop, perspective, and layout that determines how viewers experience your creation.">
                             ?
-                            <div class="tooltip">The composition and layout of your image</div>
                         </div>
                     </div>
                     <div class="section-description">
@@ -500,9 +495,8 @@
                     <div class="section-header">
                         <div class="section-icon">✨</div>
                         <h3 class="section-title">Additional details (optional)</h3>
-                        <div class="info-icon">
+                        <div class="info-icon" data-tooltip="FREE: Allow creative flexibility for artistic enhancement. Add specific details, poses, expressions, or textures while leaving room for the AI to make artistic choices that improve your vision with professional polish and creative flair.">
                             ?
-                            <div class="tooltip">Add specific details or descriptions</div>
                         </div>
                     </div>
                     <div class="section-description">
@@ -532,9 +526,8 @@
                     <div class="section-header">
                         <div class="section-icon">⚠️</div>
                         <h3 class="section-title">Things to avoid (optional)</h3>
-                        <div class="info-icon">
+                        <div class="info-icon" data-tooltip="CONSTRAINTS: State what must be avoided or excluded. This prevents unwanted elements like text, extra subjects, certain colors, or styles from appearing. Essential for maintaining control and getting exactly what you envision.">
                             ?
-                            <div class="tooltip">Specify what you don't want in the image</div>
                         </div>
                     </div>
                     <div class="section-description">
@@ -558,14 +551,17 @@
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-                    <button class="action-btn clear-btn" onclick="clearForm()">
-                        🗑️ Clear All
-                    </button>
-                    <button class="action-btn save-btn" onclick="savePrompt()">
-                        💾 Save Prompt
-                    </button>
-                    <button class="generate-btn" style="margin-top: 0; flex: 1;">
+                <!-- Mobile-optimized button container -->
+                <div class="button-container">
+                    <div class="button-row">
+                        <button class="action-btn clear-btn" onclick="clearForm()">
+                            🗑️ Clear All
+                        </button>
+                        <button class="action-btn save-btn" onclick="savePrompt()">
+                            💾 Save Prompt
+                        </button>
+                    </div>
+                    <button class="generate-btn" onclick="generatePrompt()">
                         🚀 Create Perfect Prompt
                     </button>
                 </div>
@@ -634,6 +630,9 @@
         </div>
     </div>
 
+    <!-- Tooltip element for better mobile support -->
+    <div class="tooltip-mobile" id="tooltipMobile"></div>
+
     <!-- Save Modal -->
     <div class="modal-overlay" id="saveModal">
         <div class="modal">
@@ -659,5 +658,201 @@
     </div>
 
     <script src="/visual_prompt_builder/script.js"></script>
+    <script>
+        // Enhanced tooltip functionality for mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const infoIcons = document.querySelectorAll('.info-icon');
+            const tooltipMobile = document.getElementById('tooltipMobile');
+            let activeTooltip = null;
+            let tooltipTimeout = null;
+            
+            infoIcons.forEach(icon => {
+                // Touch events for mobile (primary method)
+                icon.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Clear any existing timeout
+                    if (tooltipTimeout) {
+                        clearTimeout(tooltipTimeout);
+                        tooltipTimeout = null;
+                    }
+                    
+                    // If this tooltip is already active, hide it
+                    if (activeTooltip === this) {
+                        hideMobileTooltip();
+                        return;
+                    }
+                    
+                    showMobileTooltip(this, e);
+                });
+                
+                // Click events as secondary trigger
+                icon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Clear any existing timeout
+                    if (tooltipTimeout) {
+                        clearTimeout(tooltipTimeout);
+                        tooltipTimeout = null;
+                    }
+                    
+                    // If this tooltip is already active, hide it
+                    if (activeTooltip === this) {
+                        hideMobileTooltip();
+                        return;
+                    }
+                    
+                    showMobileTooltip(this, e);
+                });
+                
+                // Mouse events for desktop only
+                icon.addEventListener('mouseenter', function(e) {
+                    if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+                        showMobileTooltip(this, e);
+                    }
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+                        // Add a small delay for desktop to allow moving to tooltip
+                        tooltipTimeout = setTimeout(() => {
+                            hideMobileTooltip();
+                        }, 300);
+                    }
+                });
+            });
+            
+            // Allow hovering over tooltip on desktop
+            if (tooltipMobile) {
+                tooltipMobile.addEventListener('mouseenter', function() {
+                    if (tooltipTimeout) {
+                        clearTimeout(tooltipTimeout);
+                        tooltipTimeout = null;
+                    }
+                });
+                
+                tooltipMobile.addEventListener('mouseleave', function() {
+                    if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+                        hideMobileTooltip();
+                    }
+                });
+                
+                // Prevent tooltip from closing when clicked
+                tooltipMobile.addEventListener('touchstart', function(e) {
+                    e.stopPropagation();
+                });
+                
+                tooltipMobile.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+            
+            // Hide tooltip when touching/clicking elsewhere (with delay to prevent conflicts)
+            document.addEventListener('touchstart', function(e) {
+                if (!e.target.closest('.info-icon') && !e.target.closest('.tooltip-mobile')) {
+                    setTimeout(() => {
+                        hideMobileTooltip();
+                    }, 100);
+                }
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.info-icon') && !e.target.closest('.tooltip-mobile')) {
+                    setTimeout(() => {
+                        hideMobileTooltip();
+                    }, 100);
+                }
+            });
+            
+            // Hide on scroll
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (activeTooltip) {
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        hideMobileTooltip();
+                    }, 150);
+                }
+            });
+            
+            function showMobileTooltip(element, event) {
+                const tooltipText = element.getAttribute('data-tooltip');
+                if (!tooltipText) return;
+                
+                // Clear any timeouts
+                if (tooltipTimeout) {
+                    clearTimeout(tooltipTimeout);
+                    tooltipTimeout = null;
+                }
+                
+                // Set active tooltip
+                activeTooltip = element;
+                
+                // Update tooltip content
+                tooltipMobile.innerHTML = tooltipText;
+                tooltipMobile.style.display = 'block';
+                
+                // Add visual feedback to the icon
+                element.style.backgroundColor = 'rgba(6, 182, 212, 0.4)';
+                element.style.transform = 'scale(1.1)';
+                
+                // Position the tooltip after a brief delay to ensure proper sizing
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        const rect = element.getBoundingClientRect();
+                        const tooltipRect = tooltipMobile.getBoundingClientRect();
+                        
+                        let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+                        let top = rect.top - tooltipRect.height - 15;
+                        
+                        // Adjust if tooltip goes off screen horizontally
+                        const margin = 10;
+                        if (left < margin) {
+                            left = margin;
+                        } else if (left + tooltipRect.width > window.innerWidth - margin) {
+                            left = window.innerWidth - tooltipRect.width - margin;
+                        }
+                        
+                        // Adjust if tooltip goes off screen vertically
+                        if (top < margin) {
+                            top = rect.bottom + 15;
+                        }
+                        
+                        tooltipMobile.style.left = left + 'px';
+                        tooltipMobile.style.top = top + 'px';
+                        tooltipMobile.classList.add('show');
+                    });
+                });
+            }
+            
+            function hideMobileTooltip() {
+                if (tooltipMobile && activeTooltip) {
+                    tooltipMobile.classList.remove('show');
+                    
+                    // Reset icon appearance
+                    if (activeTooltip) {
+                        activeTooltip.style.backgroundColor = '';
+                        activeTooltip.style.transform = '';
+                    }
+                    
+                    setTimeout(() => {
+                        if (tooltipMobile) {
+                            tooltipMobile.style.display = 'none';
+                        }
+                    }, 200);
+                    
+                    activeTooltip = null;
+                }
+                
+                // Clear any pending timeouts
+                if (tooltipTimeout) {
+                    clearTimeout(tooltipTimeout);
+                    tooltipTimeout = null;
+                }
+            }
+        });
+    </script>
 </body>
 </html>
