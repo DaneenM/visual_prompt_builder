@@ -449,7 +449,7 @@ function generatePrompt() {
 
 function resetPromptDisplay() {
     const promptDisplay = document.getElementById('promptDisplay');
-    promptDisplay.textContent = 'Click "Create Perfect Prompt" to generate your AI prompt!';
+    promptDisplay.textContent = 'Click "Create Perfect Prompt" to generate your AI prompt! Leave fields empty for Creative Freedom mode.';
     promptDisplay.classList.remove('has-content');
     
     // Reset stats
@@ -549,7 +549,7 @@ function addConstraint(text) {
     // Removed auto-generation here
 }
 
-// Enhanced button click handler
+// Enhanced button click handler - includes Creative Freedom prompting
 function handleGenerateClick() {
     // Check if should use creative freedom
     const formElements = [
@@ -641,7 +641,7 @@ function updateCharCounter(textareaId, counterId, maxLength) {
     }
 }
 
-// Keep existing save/load/copy functions
+// FIXED: Updated saved prompts list with proper individual delete buttons
 function updateSavedPromptsList() {
     const container = document.getElementById('savedPromptsList');
     const section = document.getElementById('savedPromptsSection');
@@ -686,6 +686,7 @@ function copyPromptById(id) {
     });
 }
 
+// FIXED: Individual prompt deletion (not all prompts)
 function deletePrompt(id) {
     const prompt = savedPrompts.find(p => p.id === id);
     if (!prompt) return;
@@ -693,15 +694,22 @@ function deletePrompt(id) {
     if (confirm(`Delete "${prompt.name}"? This cannot be undone.`)) {
         savedPrompts = savedPrompts.filter(p => p.id !== id);
         updateSavedPromptsList();
+        
+        // Show feedback
+        showFeedback(event.target, '✅', 'rgba(239, 68, 68, 0.3)');
     }
 }
 
-function clearSavedPrompts() {
+// FIXED: Clear all saved prompts (separate from individual deletion)
+function clearAllSavedPrompts() {
     if (savedPrompts.length === 0) return;
     
     if (confirm(`Delete all ${savedPrompts.length} saved prompts? This cannot be undone.`)) {
         savedPrompts = [];
         updateSavedPromptsList();
+        
+        // Show feedback
+        showFeedback(event.target, '✅ Cleared All!', 'rgba(239, 68, 68, 0.3)');
     }
 }
 
@@ -731,7 +739,7 @@ async function copyPrompt() {
     }
 }
 
-// EVENT LISTENERS - Removed auto-generation
+// EVENT LISTENERS - Removed auto-generation, kept user control
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize
     updateCharCounters();

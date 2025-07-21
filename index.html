@@ -1,633 +1,1060 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Visual Prompt Builder Pro</title>
-    <link rel="stylesheet" href="/visual_prompt_builder/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/visual_prompt_builder/style.css" />
+  </head>
+  <body>
     <div class="bg-gradient"></div>
-    
+
     <div class="floating-elements">
-        <div class="floating-element" style="left: 15%; width: 80px; height: 80px; animation-delay: 0s;"></div>
-        <div class="floating-element" style="left: 70%; width: 60px; height: 60px; animation-delay: 7s;"></div>
-        <div class="floating-element" style="left: 40%; width: 100px; height: 100px; animation-delay: 14s;"></div>
-        <div class="floating-element" style="left: 85%; width: 70px; height: 70px; animation-delay: 21s;"></div>
+      <div 
+        class="floating-element"
+        style="left: 15%; width: 80px; height: 80px; animation-delay: 0s"
+      ></div>
+      <div
+        class="floating-element"
+        style="left: 70%; width: 60px; height: 60px; animation-delay: 7s"
+      ></div>
+      <div
+        class="floating-element"
+        style="left: 40%; width: 100px; height: 100px; animation-delay: 14s"
+      ></div>
+      <div
+        class="floating-element"
+        style="left: 85%; width: 70px; height: 70px; animation-delay: 21s"
+      ></div>
     </div>
 
     <div class="container">
-        <header class="header">
-            <h1>Visual Prompt Builder</h1>
-            <p>Create perfect AI prompts with guided assistance - or let creative freedom surprise you!</p>
-        </header>
+      <header class="header">
+        <h1>Visual Prompt Builder</h1>
+        <p>
+          Create perfect AI prompts with guided assistance - or let creative
+          freedom surprise you!
+        </p>
+      </header>
 
-        <div class="main-grid">
-            <div class="builder-panel">
-                <div class="section">
-                    <div class="section-header">
-                        <div class="section-icon">🎯</div>
-                        <h3 class="section-title">What do you want to create?</h3>
-                        <div class="info-icon" data-tooltip="INTENT: Define the purpose or emotional goal of the image. This sets the overall direction and helps the AI understand what you're trying to achieve - whether it's a realistic photo, artistic illustration, or functional design.">
-                            ?
-                        </div>
-                    </div>
-                    <div class="section-description">
-                        Select the main purpose of your image. This helps the AI understand your goal.
-                    </div>
-                    <div class="input-container">
-                        <select id="intent">
-                            <option value="">I want to create...</option>
-                            <option value="A realistic photograph">A realistic photograph</option>
-                            <option value="Digital artwork or illustration">Digital artwork or illustration</option>
-                            <option value="A logo or brand design">A logo or brand design</option>
-                            <option value="Concept art for a project">Concept art for a project</option>
-                            <option value="Social media graphics">Social media graphics</option>
-                            <option value="Educational diagrams">Educational diagrams</option>
-                            <option value="Website or app mockups">Website or app mockups</option>
-                            <option value="Product visualization">Product visualization</option>
-                            <option value="Fantasy concept art">Fantasy concept art</option>
-                            <option value="Portrait photography">Portrait photography</option>
-                            <option value="Abstract digital art">Abstract digital art</option>
-                            <option value="Movie poster design">Movie poster design</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <div class="section-header">
-                        <div class="section-icon">🏙️</div>
-                        <h3 class="section-title">Where does this take place?</h3>
-                        <div class="info-icon" data-tooltip="CONTEXT: Set the narrative or environment around the subject. This creates the world and atmosphere where your image exists - the background story that gives meaning and depth to your creation.">
-                            ?
-                        </div>
-                    </div>
-                    <div class="section-description">
-                        Choose the setting, background, or environment where your image takes place.
-                    </div>
-                    <div class="input-container">
-                        <select id="context">
-                            <option value="">Select location/setting...</option>
-                            <option value="Modern city or urban area">Modern city or urban area</option>
-                            <option value="Beautiful nature landscape">Beautiful nature landscape</option>
-                            <option value="Futuristic sci-fi world">Futuristic sci-fi world</option>
-                            <option value="Historical time period">Historical time period</option>
-                            <option value="Fantasy magical realm">Fantasy magical realm</option>
-                            <option value="Clean studio with plain background">Clean studio with plain background</option>
-                            <option value="Office or business environment">Office or business environment</option>
-                            <option value="Abstract space (no specific location)">Abstract space (no specific location)</option>
-                            <option value="Indoor home setting">Indoor home setting</option>
-                            <option value="Underwater scene">Underwater scene</option>
-                            <option value="Space or cosmic setting">Space or cosmic setting</option>
-                            <option value="Ancient ruins">Ancient ruins</option>
-                            <option value="Cyberpunk cityscape">Cyberpunk cityscape</option>
-                            <option value="Tropical paradise">Tropical paradise</option>
-                            <option value="Winter wonderland">Winter wonderland</option>
-                            <option value="Desert landscape">Desert landscape</option>
-                            <option value="Forest clearing">Forest clearing</option>
-                            <option value="Mountain peak">Mountain peak</option>
-                            <option value="Abandoned warehouse">Abandoned warehouse</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <div class="section-header">
-                        <div class="section-icon">👥</div>
-                        <h3 class="section-title">What should be in the image?</h3>
-                        <div class="info-icon" data-tooltip="SPECIFICS: Add vivid details to anchor the generation. Include specific subjects, their positions, actions, and key visual elements. This prevents the AI from making unwanted assumptions and gives you control over the core elements.">
-                            ?
-                        </div>
-                    </div>
-                    <div class="section-description">
-                        Choose what people, animals, objects, or things you want to include. You can select multiple items.
-                    </div>
-                    <div class="multi-select-container">
-                        <div class="multi-select-display" onclick="toggleDropdown('subjects')">
-                            <div class="selected-tags" id="selectedSubjects">
-                                <span style="color: var(--text-secondary);">Click to choose subjects...</span>
-                            </div>
-                            <div class="dropdown-arrow" id="subjectsArrow">▼</div>
-                        </div>
-                        <div class="multi-select-dropdown" id="subjectsDropdown">
-                            <div class="option-group">
-                                <div class="option-group-title">👨‍👩‍👧‍👦 People</div>
-                                <div class="option-item" data-value="a person" data-group="people">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>A person</div>
-                                        <div class="option-description">Single human character</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="a group of people" data-group="people">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Multiple people</div>
-                                        <div class="option-description">Several human characters</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="a child" data-group="people">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>A child</div>
-                                        <div class="option-description">Young person</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="an elderly person" data-group="people">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>An elderly person</div>
-                                        <div class="option-description">Senior character</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="option-group">
-                                <div class="option-group-title">🐾 Animals</div>
-                                <div class="option-item" data-value="a dog" data-group="animals">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>A dog</div>
-                                        <div class="option-description">Man's best friend</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="a cat" data-group="animals">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>A cat</div>
-                                        <div class="option-description">Feline companion</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="birds" data-group="animals">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Birds</div>
-                                        <div class="option-description">Flying creatures</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="wildlife animals" data-group="animals">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Wild animals</div>
-                                        <div class="option-description">Lions, elephants, etc.</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="option-group">
-                                <div class="option-group-title">🚗 Objects & Things</div>
-                                <div class="option-item" data-value="a car" data-group="objects">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>A car</div>
-                                        <div class="option-description">Vehicle</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="buildings" data-group="objects">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Buildings</div>
-                                        <div class="option-description">Architecture, structures</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="furniture" data-group="objects">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Furniture</div>
-                                        <div class="option-description">Chairs, tables, etc.</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="technology devices" data-group="objects">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Technology</div>
-                                        <div class="option-description">Phones, computers, gadgets</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="food" data-group="objects">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Food</div>
-                                        <div class="option-description">Meals, ingredients, dishes</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="option-group">
-                                <div class="option-group-title">🌿 Nature</div>
-                                <div class="option-item" data-value="trees and plants" data-group="nature">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Trees and plants</div>
-                                        <div class="option-description">Vegetation, greenery</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="flowers" data-group="nature">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Flowers</div>
-                                        <div class="option-description">Colorful blooms</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="mountains" data-group="nature">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Mountains</div>
-                                        <div class="option-description">Peaks, hills, landscapes</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="water" data-group="nature">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Water</div>
-                                        <div class="option-description">Ocean, lake, river, rain</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="option-group">
-                                <div class="option-group-title">🔮 Fantasy & Sci-Fi</div>
-                                <div class="option-item" data-value="magical creatures" data-group="fantasy">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Magical creatures</div>
-                                        <div class="option-description">Dragons, unicorns, phoenixes</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="robots" data-group="scifi">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Robots</div>
-                                        <div class="option-description">Mechanical beings, androids</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="spaceships" data-group="scifi">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Spaceships</div>
-                                        <div class="option-description">Futuristic vehicles</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="crystals" data-group="fantasy">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Crystals</div>
-                                        <div class="option-description">Mystical gems, minerals</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="option-group">
-                                <div class="option-group-title">📐 Abstract</div>
-                                <div class="option-item" data-value="geometric shapes" data-group="abstract">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Geometric shapes</div>
-                                        <div class="option-description">Circles, triangles, polygons</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="abstract forms" data-group="abstract">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Abstract forms</div>
-                                        <div class="option-description">Non-representational shapes</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <div class="section-header">
-                        <div class="section-icon">🎨</div>
-                        <h3 class="section-title">How should it look and feel?</h3>
-                        <div class="info-icon" data-tooltip="STYLE & MOOD: Apply cinematic or aesthetic language to evoke a tone. This transforms your image from basic to compelling by defining the visual atmosphere, color palette, lighting style, and emotional feeling you want to convey.">
-                            ?
-                        </div>
-                    </div>
-                    <div class="section-description">
-                        Choose the visual style, colors, lighting, and overall mood you want.
-                    </div>
-                    <div class="multi-select-container">
-                        <div class="multi-select-display" onclick="toggleDropdown('style')">
-                            <div class="selected-tags" id="selectedStyle">
-                                <span style="color: var(--text-secondary);">Choose visual style...</span>
-                            </div>
-                            <div class="dropdown-arrow" id="styleArrow">▼</div>
-                        </div>
-                        <div class="multi-select-dropdown" id="styleDropdown">
-                            <div class="option-group">
-                                <div class="option-group-title">📸 Realism Level</div>
-                                <div class="option-item" data-value="photorealistic" data-group="realism">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Photorealistic</div>
-                                        <div class="option-description">Looks like a real photograph</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="stylized illustration" data-group="realism">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Stylized illustration</div>
-                                        <div class="option-description">Artistic, not realistic</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="cartoon style" data-group="realism">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Cartoon style</div>
-                                        <div class="option-description">Fun, animated look</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="detailed hyperrealistic" data-group="realism">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Hyperrealistic</div>
-                                        <div class="option-description">Ultra-detailed, beyond photography</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="cel-shaded animation" data-group="realism">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Cel-shaded</div>
-                                        <div class="option-description">Anime/cartoon rendering</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="option-group">
-                                <div class="option-group-title">🌈 Colors</div>
-                                <div class="option-item" data-value="vibrant bright colors" data-group="colors">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Bright and vibrant</div>
-                                        <div class="option-description">Bold, energetic colors</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="soft pastel colors" data-group="colors">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Soft pastels</div>
-                                        <div class="option-description">Gentle, light colors</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="monochrome black and white" data-group="colors">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Black and white</div>
-                                        <div class="option-description">No color, classic look</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="warm earth tones" data-group="colors">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Earth tones</div>
-                                        <div class="option-description">Browns, greens, natural colors</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="neon cyberpunk colors" data-group="colors">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Neon cyberpunk</div>
-                                        <div class="option-description">Electric blues, magentas, greens</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="option-group">
-                                <div class="option-group-title">💡 Lighting & Mood</div>
-                                <div class="option-item" data-value="bright sunny lighting" data-group="lighting">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Bright and sunny</div>
-                                        <div class="option-description">Happy, cheerful mood</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="dramatic moody lighting" data-group="lighting">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Dramatic and moody</div>
-                                        <div class="option-description">Strong shadows, intense</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="soft dreamy atmosphere" data-group="lighting">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Soft and dreamy</div>
-                                        <div class="option-description">Gentle, ethereal feeling</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="golden hour warm glow" data-group="lighting">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Golden hour</div>
-                                        <div class="option-description">Sunset/sunrise warm light</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="option-group">
-                                <div class="option-group-title">🎭 Art Styles</div>
-                                <div class="option-item" data-value="vintage retro style" data-group="art">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Vintage retro</div>
-                                        <div class="option-description">Classic, nostalgic aesthetic</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="minimalist clean design" data-group="art">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Minimalist</div>
-                                        <div class="option-description">Clean, simple, elegant</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="painterly brushstrokes" data-group="art">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Painterly</div>
-                                        <div class="option-description">Visible brush strokes, artistic</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="steampunk aesthetic" data-group="art">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Steampunk</div>
-                                        <div class="option-description">Victorian-era industrial</div>
-                                    </div>
-                                </div>
-                                <div class="option-item" data-value="art nouveau style" data-group="art">
-                                    <div class="option-checkbox"></div>
-                                    <div>
-                                        <div>Art nouveau</div>
-                                        <div class="option-description">Elegant, organic curves</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <div class="section-header">
-                        <div class="section-icon">📐</div>
-                        <h3 class="section-title">How should it be framed?</h3>
-                        <div class="info-icon" data-tooltip="BLUEPRINT: Use consistent structure for compositional elements. This controls how your image is composed and framed - the camera angle, crop, perspective, and layout that determines how viewers experience your creation.">
-                            ?
-                        </div>
-                    </div>
-                    <div class="section-description">
-                        Choose how you want the image cropped and composed.
-                    </div>
-                    <div class="input-container">
-                        <select id="structure">
-                            <option value="">Select composition style...</option>
-                            <option value="vertical portrait format">📱 Vertical portrait (9:16)</option>
-                            <option value="horizontal landscape format">🖥️ Horizontal landscape (16:9)</option>
-                            <option value="square format">⬜ Square format (1:1)</option>
-                            <option value="close-up shot">🔍 Close-up shot</option>
-                            <option value="wide shot showing full scene">📷 Wide establishing shot</option>
-                            <option value="centered composition">🎯 Centered composition</option>
-                            <option value="rule of thirds composition">📐 Rule of thirds</option>
-                            <option value="bird's eye view">🦅 Bird's eye view</option>
-                            <option value="low angle perspective">⬆️ Low angle (looking up)</option>
-                            <option value="dutch angle composition">🔄 Dutch angle (tilted)</option>
-                            <option value="macro photography style">🔬 Macro (extreme close-up)</option>
-                            <option value="panoramic view">🌄 Panoramic view</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <div class="section-header">
-                        <div class="section-icon">✨</div>
-                        <h3 class="section-title">Additional details (optional)</h3>
-                        <div class="info-icon" data-tooltip="FREE: Allow creative flexibility for artistic enhancement. Add specific details, poses, expressions, or textures while leaving room for the AI to make artistic choices that improve your vision with professional polish and creative flair.">
-                            ?
-                        </div>
-                    </div>
-                    <div class="section-description">
-                        Describe any specific details, poses, expressions, textures, or other elements you want.
-                    </div>
-                    <div class="input-container">
-                        <textarea 
-                            id="details" 
-                            placeholder="Example: 'wearing a red dress', 'smiling and waving', 'made of glass', 'covered in snow'..."
-                            maxlength="400"
-                        ></textarea>
-                        <span class="char-counter" id="detailsCounter">0/400</span>
-                    </div>
-                    <div class="quick-suggestions">
-                        <div class="suggestion-pill" onclick="addSuggestion('smiling and happy')">😊 Smiling</div>
-                        <div class="suggestion-pill" onclick="addSuggestion('wearing casual clothes')">👕 Casual clothes</div>
-                        <div class="suggestion-pill" onclick="addSuggestion('professional business attire')">👔 Business attire</div>
-                        <div class="suggestion-pill" onclick="addSuggestion('surrounded by flowers')">🌸 With flowers</div>
-                        <div class="suggestion-pill" onclick="addSuggestion('in motion, dynamic pose')">🏃 In motion</div>
-                        <div class="suggestion-pill" onclick="addSuggestion('with intricate details and perfect lighting')">✨ Professional quality</div>
-                        <div class="suggestion-pill" onclick="addSuggestion('featuring dynamic poses and expressions')">🎭 Dynamic poses</div>
-                        <div class="suggestion-pill" onclick="addSuggestion('with rich textures and atmospheric depth')">🌊 Rich textures</div>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <div class="section-header">
-                        <div class="section-icon">⚠️</div>
-                        <h3 class="section-title">Things to avoid (optional)</h3>
-                        <div class="info-icon" data-tooltip="CONSTRAINTS: State what must be avoided or excluded. This prevents unwanted elements like text, extra subjects, certain colors, or styles from appearing. Essential for maintaining control and getting exactly what you envision.">
-                            ?
-                        </div>
-                    </div>
-                    <div class="section-description">
-                        Tell the AI what you definitely don't want to see in your image.
-                    </div>
-                    <div class="input-container">
-                        <textarea 
-                            id="constraints" 
-                            placeholder="Example: 'no text or words', 'avoid dark colors', 'no blurry background'..."
-                            maxlength="300"
-                        ></textarea>
-                        <span class="char-counter" id="constraintsCounter">0/300</span>
-                    </div>
-                    <div class="quick-suggestions">
-                        <div class="suggestion-pill" onclick="addConstraint('no text or writing')">🚫 No text</div>
-                        <div class="suggestion-pill" onclick="addConstraint('no blurry background')">🚫 No blur</div>
-                        <div class="suggestion-pill" onclick="addConstraint('avoid dark or scary elements')">🚫 Nothing scary</div>
-                        <div class="suggestion-pill" onclick="addConstraint('no nudity or inappropriate content')">🚫 Keep it clean</div>
-                        <div class="suggestion-pill" onclick="addConstraint('avoid oversaturation')">🚫 No oversaturation</div>
-                        <div class="suggestion-pill" onclick="addConstraint('no distorted proportions')">🚫 Proper proportions</div>
-                    </div>
-                </div>
-
-                <!-- Mobile-optimized button container -->
-                <div class="button-container">
-                    <div class="button-row">
-                        <button class="action-btn clear-btn" onclick="clearForm()">
-                            🗑️ Clear All
-                        </button>
-                        <button class="action-btn save-btn" onclick="savePrompt()">
-                            💾 Save Prompt
-                        </button>
-                    </div>
-                    <button class="generate-btn" onclick="generatePrompt()">
-                        🚀 Create Perfect Prompt
-                    </button>
-                </div>
-                
-                <!-- Creative Freedom Hint -->
-                <div class="creative-freedom-hint" id="creativeFreedomHint">
-                    <div class="hint-header">
-                    </div>
-                    <div class="hint-text"><strong>💡Pro Tip:</strong>
-                        Leave fields empty and click generate for <span class="highlight">Creative Freedom</span> mode - let AI surprise you with amazing combinations!
-                    </div>
-                </div>
+      <div class="main-grid">
+        <div class="builder-panel">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-icon">🎯</div>
+              <h3 class="section-title">What do you want to create?</h3>
+              <div
+                class="info-icon"
+                data-tooltip="INTENT: Define the purpose or emotional goal of the image. This sets the overall direction and helps the AI understand what you're trying to achieve - whether it's a realistic photo, artistic illustration, or functional design."
+              >
+                ?
+              </div>
             </div>
-
-            <div class="preview-panel">
-                <div class="preview-header">
-                    <h3 class="preview-title">Your AI Prompt</h3>
-                    <button class="copy-btn" onclick="copyPrompt()" id="copyBtn">
-                        <span>📋</span> Copy
-                    </button>
-                </div>
-                
-                <div class="prompt-output" id="promptDisplay" onclick="enableEditMode()">
-                    Click "Create Perfect Prompt" to generate your AI prompt! Leave fields empty for Creative Freedom mode.
-                </div>
-
-                <div class="edit-mode" id="editMode" style="display: none;">
-                    <textarea 
-                        id="editablePrompt"
-                        class="editable-prompt-textarea"
-                        placeholder="Edit your prompt here..."
-                    ></textarea>
-                    <div class="edit-actions">
-                        <button class="action-btn save-btn" onclick="saveEdit()">💾 Save Changes</button>
-                        <button class="action-btn clear-btn" onclick="cancelEdit()">❌ Cancel</button>
-                    </div>
-                </div>
-
-                <div class="element-tags" id="elementTags"></div>
-
-                <div class="saved-prompts-section" id="savedPromptsSection" style="display: none;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-                        <h4 style="color: var(--text-primary); font-size: 1.125rem; font-weight: 600;">Saved Prompts</h4>
-                        <button class="action-btn clear-btn" onclick="clearSavedPrompts()" style="min-width: auto; padding: 0.5rem;">
-                            🗑️
-                        </button>
-                    </div>
-                    <div class="saved-prompts-list" id="savedPromptsList"></div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value" id="wordCount">0</div>
-                        <div class="stat-label">Words</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="charCount">0</div>
-                        <div class="stat-label">Characters</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="elementCount">0</div>
-                        <div class="stat-label">Elements</div>
-                    </div>
-                </div>
+            <div class="section-description">
+              Select the main purpose of your image. This helps the AI
+              understand your goal.
             </div>
+            <div class="input-container">
+              <select id="intent">
+                <option value="">I want to create...</option>
+                <option value="A realistic photograph">
+                  A realistic photograph
+                </option>
+                <option value="Digital artwork or illustration">
+                  Digital artwork or illustration
+                </option>
+                <option value="A logo or brand design">
+                  A logo or brand design
+                </option>
+                <option value="Concept art for a project">
+                  Concept art for a project
+                </option>
+                <option value="Social media graphics">
+                  Social media graphics
+                </option>
+                <option value="Educational diagrams">
+                  Educational diagrams
+                </option>
+                <option value="Website or app mockups">
+                  Website or app mockups
+                </option>
+                <option value="Product visualization">
+                  Product visualization
+                </option>
+                <option value="Fantasy concept art">Fantasy concept art</option>
+                <option value="Portrait photography">
+                  Portrait photography
+                </option>
+                <option value="Abstract digital art">
+                  Abstract digital art
+                </option>
+                <option value="Movie poster design">Movie poster design</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-header">
+              <div class="section-icon">🏙️</div>
+              <h3 class="section-title">Where does this take place?</h3>
+              <div
+                class="info-icon"
+                data-tooltip="CONTEXT: Set the narrative or environment around the subject. This creates the world and atmosphere where your image exists - the background story that gives meaning and depth to your creation."
+              >
+                ?
+              </div>
+            </div>
+            <div class="section-description">
+              Choose the setting, background, or environment where your image
+              takes place.
+            </div>
+            <div class="input-container">
+              <select id="context">
+                <option value="">Select location/setting...</option>
+                <option value="Modern city or urban area">
+                  Modern city or urban area
+                </option>
+                <option value="Beautiful nature landscape">
+                  Beautiful nature landscape
+                </option>
+                <option value="Futuristic sci-fi world">
+                  Futuristic sci-fi world
+                </option>
+                <option value="Historical time period">
+                  Historical time period
+                </option>
+                <option value="Fantasy magical realm">
+                  Fantasy magical realm
+                </option>
+                <option value="Clean studio with plain background">
+                  Clean studio with plain background
+                </option>
+                <option value="Office or business environment">
+                  Office or business environment
+                </option>
+                <option value="Abstract space (no specific location)">
+                  Abstract space (no specific location)
+                </option>
+                <option value="Indoor home setting">Indoor home setting</option>
+                <option value="Underwater scene">Underwater scene</option>
+                <option value="Space or cosmic setting">
+                  Space or cosmic setting
+                </option>
+                <option value="Ancient ruins">Ancient ruins</option>
+                <option value="Cyberpunk cityscape">Cyberpunk cityscape</option>
+                <option value="Tropical paradise">Tropical paradise</option>
+                <option value="Winter wonderland">Winter wonderland</option>
+                <option value="Desert landscape">Desert landscape</option>
+                <option value="Forest clearing">Forest clearing</option>
+                <option value="Mountain peak">Mountain peak</option>
+                <option value="Abandoned warehouse">Abandoned warehouse</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-header">
+              <div class="section-icon">👥</div>
+              <h3 class="section-title">What should be in the image?</h3>
+              <div
+                class="info-icon"
+                data-tooltip="SPECIFICS: Add vivid details to anchor the generation. Include specific subjects, their positions, actions, and key visual elements. This prevents the AI from making unwanted assumptions and gives you control over the core elements."
+              >
+                ?
+              </div>
+            </div>
+            <div class="section-description">
+              Choose what people, animals, objects, or things you want to
+              include. You can select multiple items.
+            </div>
+            <div class="multi-select-container">
+              <div
+                class="multi-select-display"
+                onclick="toggleDropdown('subjects')"
+              >
+                <div class="selected-tags" id="selectedSubjects">
+                  <span style="color: var(--text-secondary)"
+                    >Click to choose subjects...</span
+                  >
+                </div>
+                <div class="dropdown-arrow" id="subjectsArrow">▼</div>
+              </div>
+              <div class="multi-select-dropdown" id="subjectsDropdown">
+                <div class="option-group">
+                  <div class="option-group-title">👨‍👩‍👧‍👦 People</div>
+                  <div
+                    class="option-item"
+                    data-value="a person"
+                    data-group="people"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>A person</div>
+                      <div class="option-description">
+                        Single human character
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="a group of people"
+                    data-group="people"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Multiple people</div>
+                      <div class="option-description">
+                        Several human characters
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="a child"
+                    data-group="people"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>A child</div>
+                      <div class="option-description">Young person</div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="an elderly person"
+                    data-group="people"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>An elderly person</div>
+                      <div class="option-description">Senior character</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-group">
+                  <div class="option-group-title">🐾 Animals</div>
+                  <div
+                    class="option-item"
+                    data-value="a dog"
+                    data-group="animals"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>A dog</div>
+                      <div class="option-description">Man's best friend</div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="a cat"
+                    data-group="animals"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>A cat</div>
+                      <div class="option-description">Feline companion</div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="birds"
+                    data-group="animals"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Birds</div>
+                      <div class="option-description">Flying creatures</div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="wildlife animals"
+                    data-group="animals"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Wild animals</div>
+                      <div class="option-description">
+                        Lions, elephants, etc.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-group">
+                  <div class="option-group-title">🚗 Objects & Things</div>
+                  <div
+                    class="option-item"
+                    data-value="a car"
+                    data-group="objects"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>A car</div>
+                      <div class="option-description">Vehicle</div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="buildings"
+                    data-group="objects"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Buildings</div>
+                      <div class="option-description">
+                        Architecture, structures
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="furniture"
+                    data-group="objects"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Furniture</div>
+                      <div class="option-description">Chairs, tables, etc.</div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="technology devices"
+                    data-group="objects"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Technology</div>
+                      <div class="option-description">
+                        Phones, computers, gadgets
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="food"
+                    data-group="objects"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Food</div>
+                      <div class="option-description">
+                        Meals, ingredients, dishes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-group">
+                  <div class="option-group-title">🌿 Nature</div>
+                  <div
+                    class="option-item"
+                    data-value="trees and plants"
+                    data-group="nature"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Trees and plants</div>
+                      <div class="option-description">Vegetation, greenery</div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="flowers"
+                    data-group="nature"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Flowers</div>
+                      <div class="option-description">Colorful blooms</div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="mountains"
+                    data-group="nature"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Mountains</div>
+                      <div class="option-description">
+                        Peaks, hills, landscapes
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="water"
+                    data-group="nature"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Water</div>
+                      <div class="option-description">
+                        Ocean, lake, river, rain
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-group">
+                  <div class="option-group-title">🔮 Fantasy & Sci-Fi</div>
+                  <div
+                    class="option-item"
+                    data-value="magical creatures"
+                    data-group="fantasy"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Magical creatures</div>
+                      <div class="option-description">
+                        Dragons, unicorns, phoenixes
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="robots"
+                    data-group="scifi"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Robots</div>
+                      <div class="option-description">
+                        Mechanical beings, androids
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="spaceships"
+                    data-group="scifi"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Spaceships</div>
+                      <div class="option-description">Futuristic vehicles</div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="crystals"
+                    data-group="fantasy"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Crystals</div>
+                      <div class="option-description">
+                        Mystical gems, minerals
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-group">
+                  <div class="option-group-title">📐 Abstract</div>
+                  <div
+                    class="option-item"
+                    data-value="geometric shapes"
+                    data-group="abstract"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Geometric shapes</div>
+                      <div class="option-description">
+                        Circles, triangles, polygons
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="abstract forms"
+                    data-group="abstract"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Abstract forms</div>
+                      <div class="option-description">
+                        Non-representational shapes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-header">
+              <div class="section-icon">🎨</div>
+              <h3 class="section-title">How should it look and feel?</h3>
+              <div
+                class="info-icon"
+                data-tooltip="STYLE & MOOD: Apply cinematic or aesthetic language to evoke a tone. This transforms your image from basic to compelling by defining the visual atmosphere, color palette, lighting style, and emotional feeling you want to convey."
+              >
+                ?
+              </div>
+            </div>
+            <div class="section-description">
+              Choose the visual style, colors, lighting, and overall mood you
+              want.
+            </div>
+            <div class="multi-select-container">
+              <div
+                class="multi-select-display"
+                onclick="toggleDropdown('style')"
+              >
+                <div class="selected-tags" id="selectedStyle">
+                  <span style="color: var(--text-secondary)"
+                    >Choose visual style...</span
+                  >
+                </div>
+                <div class="dropdown-arrow" id="styleArrow">▼</div>
+              </div>
+              <div class="multi-select-dropdown" id="styleDropdown">
+                <div class="option-group">
+                  <div class="option-group-title">📸 Realism Level</div>
+                  <div
+                    class="option-item"
+                    data-value="photorealistic"
+                    data-group="realism"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Photorealistic</div>
+                      <div class="option-description">
+                        Looks like a real photograph
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="stylized illustration"
+                    data-group="realism"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Stylized illustration</div>
+                      <div class="option-description">
+                        Artistic, not realistic
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="cartoon style"
+                    data-group="realism"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Cartoon style</div>
+                      <div class="option-description">Fun, animated look</div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="detailed hyperrealistic"
+                    data-group="realism"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Hyperrealistic</div>
+                      <div class="option-description">
+                        Ultra-detailed, beyond photography
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="cel-shaded animation"
+                    data-group="realism"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Cel-shaded</div>
+                      <div class="option-description">
+                        Anime/cartoon rendering
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-group">
+                  <div class="option-group-title">🌈 Colors</div>
+                  <div
+                    class="option-item"
+                    data-value="vibrant bright colors"
+                    data-group="colors"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Bright and vibrant</div>
+                      <div class="option-description">
+                        Bold, energetic colors
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="soft pastel colors"
+                    data-group="colors"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Soft pastels</div>
+                      <div class="option-description">Gentle, light colors</div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="monochrome black and white"
+                    data-group="colors"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Black and white</div>
+                      <div class="option-description">
+                        No color, classic look
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="warm earth tones"
+                    data-group="colors"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Earth tones</div>
+                      <div class="option-description">
+                        Browns, greens, natural colors
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="neon cyberpunk colors"
+                    data-group="colors"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Neon cyberpunk</div>
+                      <div class="option-description">
+                        Electric blues, magentas, greens
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-group">
+                  <div class="option-group-title">💡 Lighting & Mood</div>
+                  <div
+                    class="option-item"
+                    data-value="bright sunny lighting"
+                    data-group="lighting"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Bright and sunny</div>
+                      <div class="option-description">Happy, cheerful mood</div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="dramatic moody lighting"
+                    data-group="lighting"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Dramatic and moody</div>
+                      <div class="option-description">
+                        Strong shadows, intense
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="soft dreamy atmosphere"
+                    data-group="lighting"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Soft and dreamy</div>
+                      <div class="option-description">
+                        Gentle, ethereal feeling
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="golden hour warm glow"
+                    data-group="lighting"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Golden hour</div>
+                      <div class="option-description">
+                        Sunset/sunrise warm light
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-group">
+                  <div class="option-group-title">🎭 Art Styles</div>
+                  <div
+                    class="option-item"
+                    data-value="vintage retro style"
+                    data-group="art"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Vintage retro</div>
+                      <div class="option-description">
+                        Classic, nostalgic aesthetic
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="minimalist clean design"
+                    data-group="art"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Minimalist</div>
+                      <div class="option-description">
+                        Clean, simple, elegant
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="painterly brushstrokes"
+                    data-group="art"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Painterly</div>
+                      <div class="option-description">
+                        Visible brush strokes, artistic
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="steampunk aesthetic"
+                    data-group="art"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Steampunk</div>
+                      <div class="option-description">
+                        Victorian-era industrial
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="option-item"
+                    data-value="art nouveau style"
+                    data-group="art"
+                  >
+                    <div class="option-checkbox"></div>
+                    <div>
+                      <div>Art nouveau</div>
+                      <div class="option-description">
+                        Elegant, organic curves
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-header">
+              <div class="section-icon">📐</div>
+              <h3 class="section-title">How should it be framed?</h3>
+              <div
+                class="info-icon"
+                data-tooltip="BLUEPRINT: Use consistent structure for compositional elements. This controls how your image is composed and framed - the camera angle, crop, perspective, and layout that determines how viewers experience your creation."
+              >
+                ?
+              </div>
+            </div>
+            <div class="section-description">
+              Choose how you want the image cropped and composed.
+            </div>
+            <div class="input-container">
+              <select id="structure">
+                <option value="">Select composition style...</option>
+                <option value="vertical portrait format">
+                  📱 Vertical portrait (9:16)
+                </option>
+                <option value="horizontal landscape format">
+                  🖥️ Horizontal landscape (16:9)
+                </option>
+                <option value="square format">⬜ Square format (1:1)</option>
+                <option value="close-up shot">🔍 Close-up shot</option>
+                <option value="wide shot showing full scene">
+                  📷 Wide establishing shot
+                </option>
+                <option value="centered composition">
+                  🎯 Centered composition
+                </option>
+                <option value="rule of thirds composition">
+                  📐 Rule of thirds
+                </option>
+                <option value="bird's eye view">🦅 Bird's eye view</option>
+                <option value="low angle perspective">
+                  ⬆️ Low angle (looking up)
+                </option>
+                <option value="dutch angle composition">
+                  🔄 Dutch angle (tilted)
+                </option>
+                <option value="macro photography style">
+                  🔬 Macro (extreme close-up)
+                </option>
+                <option value="panoramic view">🌄 Panoramic view</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-header">
+              <div class="section-icon">✨</div>
+              <h3 class="section-title">Additional details (optional)</h3>
+              <div
+                class="info-icon"
+                data-tooltip="FREE: Allow creative flexibility for artistic enhancement. Add specific details, poses, expressions, or textures while leaving room for the AI to make artistic choices that improve your vision with professional polish and creative flair."
+              >
+                ?
+              </div>
+            </div>
+            <div class="section-description">
+              Describe any specific details, poses, expressions, textures, or
+              other elements you want.
+            </div>
+            <div class="input-container">
+              <textarea
+                id="details"
+                placeholder="Example: 'wearing a red dress', 'smiling and waving', 'made of glass', 'covered in snow'..."
+                maxlength="400"
+              ></textarea>
+              <span class="char-counter" id="detailsCounter">0/400</span>
+            </div>
+            <div class="quick-suggestions">
+              <div
+                class="suggestion-pill"
+                onclick="addSuggestion('smiling and happy')"
+              >
+                😊 Smiling
+              </div>
+              <div
+                class="suggestion-pill"
+                onclick="addSuggestion('wearing casual clothes')"
+              >
+                👕 Casual clothes
+              </div>
+              <div
+                class="suggestion-pill"
+                onclick="addSuggestion('professional business attire')"
+              >
+                👔 Business attire
+              </div>
+              <div
+                class="suggestion-pill"
+                onclick="addSuggestion('surrounded by flowers')"
+              >
+                🌸 With flowers
+              </div>
+              <div
+                class="suggestion-pill"
+                onclick="addSuggestion('in motion, dynamic pose')"
+              >
+                🏃 In motion
+              </div>
+              <div
+                class="suggestion-pill"
+                onclick="addSuggestion('with intricate details and perfect lighting')"
+              >
+                ✨ Professional quality
+              </div>
+              <div
+                class="suggestion-pill"
+                onclick="addSuggestion('featuring dynamic poses and expressions')"
+              >
+                🎭 Dynamic poses
+              </div>
+              <div
+                class="suggestion-pill"
+                onclick="addSuggestion('with rich textures and atmospheric depth')"
+              >
+                🌊 Rich textures
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-header">
+              <div class="section-icon">⚠️</div>
+              <h3 class="section-title">Things to avoid (optional)</h3>
+              <div
+                class="info-icon"
+                data-tooltip="CONSTRAINTS: State what must be avoided or excluded. This prevents unwanted elements like text, extra subjects, certain colors, or styles from appearing. Essential for maintaining control and getting exactly what you envision."
+              >
+                ?
+              </div>
+            </div>
+            <div class="section-description">
+              Tell the AI what you definitely don't want to see in your image.
+            </div>
+            <div class="input-container">
+              <textarea
+                id="constraints"
+                placeholder="Example: 'no text or words', 'avoid dark colors', 'no blurry background'..."
+                maxlength="300"
+              ></textarea>
+              <span class="char-counter" id="constraintsCounter">0/300</span>
+            </div>
+            <div class="quick-suggestions">
+              <div
+                class="suggestion-pill"
+                onclick="addConstraint('no text or writing')"
+              >
+                🚫 No text
+              </div>
+              <div
+                class="suggestion-pill"
+                onclick="addConstraint('no blurry background')"
+              >
+                🚫 No blur
+              </div>
+              <div
+                class="suggestion-pill"
+                onclick="addConstraint('avoid dark or scary elements')"
+              >
+                🚫 Nothing scary
+              </div>
+              <div
+                class="suggestion-pill"
+                onclick="addConstraint('no nudity or inappropriate content')"
+              >
+                🚫 Keep it clean
+              </div>
+              <div
+                class="suggestion-pill"
+                onclick="addConstraint('avoid oversaturation')"
+              >
+                🚫 No oversaturation
+              </div>
+              <div
+                class="suggestion-pill"
+                onclick="addConstraint('no distorted proportions')"
+              >
+                🚫 Proper proportions
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile-optimized button container -->
+          <div class="button-container">
+            <div class="button-row">
+              <button class="action-btn clear-btn" onclick="clearForm()">
+                🗑️ Clear All
+              </button>
+              <button class="action-btn save-btn" onclick="savePrompt()">
+                💾 Save Prompt
+              </button>
+            </div>
+            <button class="generate-btn" onclick="generatePrompt()">
+              🚀 Create Perfect Prompt
+            </button>
+          </div>
+
+          <!-- Creative Freedom Hint -->
+          <div class="creative-freedom-hint" id="creativeFreedomHint">
+            <div class="hint-header"></div>
+            <div class="hint-text">
+              <strong>💡Pro Tip:</strong> Leave fields empty and click generate
+              for <span class="highlight">Creative Freedom</span> mode - let AI
+              surprise you with amazing combinations!
+            </div>
+          </div>
         </div>
+
+        <div class="preview-panel">
+          <div class="preview-header">
+            <h3 class="preview-title">Your AI Prompt</h3>
+            <button class="copy-btn" onclick="copyPrompt()" id="copyBtn">
+              <span>📋</span> Copy
+            </button>
+          </div>
+
+          <div
+            class="prompt-output"
+            id="promptDisplay"
+            onclick="enableEditMode()"
+          >
+            Click "Create Perfect Prompt" to generate your AI prompt! Leave
+            fields empty for Creative Freedom mode.
+          </div>
+
+          <div class="edit-mode" id="editMode" style="display: none">
+            <textarea
+              id="editablePrompt"
+              class="editable-prompt-textarea"
+              placeholder="Edit your prompt here..."
+            ></textarea>
+            <div class="edit-actions">
+              <button class="action-btn save-btn" onclick="saveEdit()">
+                💾 Save Changes
+              </button>
+              <button class="action-btn clear-btn" onclick="cancelEdit()">
+                ❌ Cancel
+              </button>
+            </div>
+          </div>
+
+          <div class="element-tags" id="elementTags"></div>
+
+          <div
+            class="saved-prompts-section"
+            id="savedPromptsSection"
+            style="display: none"
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 1rem;
+              "
+            >
+              <h4
+                style="
+                  color: var(--text-primary);
+                  font-size: 1.125rem;
+                  font-weight: 600;
+                "
+              >
+                Saved Prompts
+              </h4>
+            </div>
+            <div class="saved-prompts-list" id="savedPromptsList"></div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value" id="wordCount">0</div>
+              <div class="stat-label">Words</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="charCount">0</div>
+              <div class="stat-label">Characters</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="elementCount">0</div>
+              <div class="stat-label">Elements</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Tooltip element for better mobile support -->
@@ -635,224 +1062,275 @@
 
     <!-- Save Modal -->
     <div class="modal-overlay" id="saveModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Save Your Prompt</h3>
-                <button class="modal-close" onclick="closeSaveModal()">×</button>
-            </div>
-            <form class="save-form" onsubmit="confirmSave(event)">
-                <div>
-                    <label style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem; display: block;">Prompt Name</label>
-                    <input type="text" id="promptName" placeholder="e.g., 'Sunset Portrait', 'Product Photo', etc." required>
-                </div>
-                <div>
-                    <label style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem; display: block;">Preview</label>
-                    <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; font-size: 0.875rem; line-height: 1.5; color: var(--text-secondary); max-height: 150px; overflow-y: auto;" id="savePreview"></div>
-                </div>
-                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                    <button type="button" class="action-btn clear-btn" onclick="closeSaveModal()">Cancel</button>
-                    <button type="submit" class="action-btn save-btn" style="flex: 1;">💾 Save Prompt</button>
-                </div>
-            </form>
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Save Your Prompt</h3>
+          <button class="modal-close" onclick="closeSaveModal()">×</button>
         </div>
+        <form class="save-form" onsubmit="confirmSave(event)">
+          <div>
+            <label
+              style="
+                color: var(--text-secondary);
+                font-size: 0.875rem;
+                margin-bottom: 0.5rem;
+                display: block;
+              "
+              >Prompt Name</label
+            >
+            <input
+              type="text"
+              id="promptName"
+              placeholder="e.g., 'Sunset Portrait', 'Product Photo', etc."
+              required
+            />
+          </div>
+          <div>
+            <label
+              style="
+                color: var(--text-secondary);
+                font-size: 0.875rem;
+                margin-bottom: 0.5rem;
+                display: block;
+              "
+              >Preview</label
+            >
+            <div
+              style="
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                padding: 1rem;
+                font-size: 0.875rem;
+                line-height: 1.5;
+                color: var(--text-secondary);
+                max-height: 150px;
+                overflow-y: auto;
+              "
+              id="savePreview"
+            ></div>
+          </div>
+          <div style="display: flex; gap: 1rem; margin-top: 0.5rem">
+            <button
+              type="button"
+              class="action-btn clear-btn"
+              onclick="closeSaveModal()"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="action-btn save-btn" style="flex: 1">
+              💾 Save Prompt
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <script src="/visual_prompt_builder/script.js"></script>
     <script>
-        // Enhanced tooltip functionality for mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const infoIcons = document.querySelectorAll('.info-icon');
-            const tooltipMobile = document.getElementById('tooltipMobile');
-            let activeTooltip = null;
-            let tooltipTimeout = null;
-            
-            infoIcons.forEach(icon => {
-                // Touch events for mobile (primary method)
-                icon.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Clear any existing timeout
-                    if (tooltipTimeout) {
-                        clearTimeout(tooltipTimeout);
-                        tooltipTimeout = null;
-                    }
-                    
-                    // If this tooltip is already active, hide it
-                    if (activeTooltip === this) {
-                        hideMobileTooltip();
-                        return;
-                    }
-                    
-                    showMobileTooltip(this, e);
-                });
-                
-                // Click events as secondary trigger
-                icon.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Clear any existing timeout
-                    if (tooltipTimeout) {
-                        clearTimeout(tooltipTimeout);
-                        tooltipTimeout = null;
-                    }
-                    
-                    // If this tooltip is already active, hide it
-                    if (activeTooltip === this) {
-                        hideMobileTooltip();
-                        return;
-                    }
-                    
-                    showMobileTooltip(this, e);
-                });
-                
-                // Mouse events for desktop only
-                icon.addEventListener('mouseenter', function(e) {
-                    if (window.innerWidth > 768 && !('ontouchstart' in window)) {
-                        showMobileTooltip(this, e);
-                    }
-                });
-                
-                icon.addEventListener('mouseleave', function() {
-                    if (window.innerWidth > 768 && !('ontouchstart' in window)) {
-                        // Add a small delay for desktop to allow moving to tooltip
-                        tooltipTimeout = setTimeout(() => {
-                            hideMobileTooltip();
-                        }, 300);
-                    }
-                });
-            });
-            
-            // Allow hovering over tooltip on desktop
-            if (tooltipMobile) {
-                tooltipMobile.addEventListener('mouseenter', function() {
-                    if (tooltipTimeout) {
-                        clearTimeout(tooltipTimeout);
-                        tooltipTimeout = null;
-                    }
-                });
-                
-                tooltipMobile.addEventListener('mouseleave', function() {
-                    if (window.innerWidth > 768 && !('ontouchstart' in window)) {
-                        hideMobileTooltip();
-                    }
-                });
-                
-                // Prevent tooltip from closing when clicked
-                tooltipMobile.addEventListener('touchstart', function(e) {
-                    e.stopPropagation();
-                });
-                
-                tooltipMobile.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
+      // Enhanced tooltip functionality for mobile
+      document.addEventListener("DOMContentLoaded", function () {
+        const infoIcons = document.querySelectorAll(".info-icon");
+        const tooltipMobile = document.getElementById("tooltipMobile");
+        let activeTooltip = null;
+        let tooltipTimeout = null;
+
+        infoIcons.forEach((icon) => {
+          // Touch events for mobile (primary method)
+          icon.addEventListener("touchstart", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Clear any existing timeout
+            if (tooltipTimeout) {
+              clearTimeout(tooltipTimeout);
+              tooltipTimeout = null;
             }
-            
-            // Hide tooltip when touching/clicking elsewhere (with delay to prevent conflicts)
-            document.addEventListener('touchstart', function(e) {
-                if (!e.target.closest('.info-icon') && !e.target.closest('.tooltip-mobile')) {
-                    setTimeout(() => {
-                        hideMobileTooltip();
-                    }, 100);
-                }
-            });
-            
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.info-icon') && !e.target.closest('.tooltip-mobile')) {
-                    setTimeout(() => {
-                        hideMobileTooltip();
-                    }, 100);
-                }
-            });
-            
-            // Hide on scroll
-            let scrollTimeout;
-            window.addEventListener('scroll', function() {
-                if (activeTooltip) {
-                    clearTimeout(scrollTimeout);
-                    scrollTimeout = setTimeout(() => {
-                        hideMobileTooltip();
-                    }, 150);
-                }
-            });
-            
-            function showMobileTooltip(element, event) {
-                const tooltipText = element.getAttribute('data-tooltip');
-                if (!tooltipText) return;
-                
-                // Clear any timeouts
-                if (tooltipTimeout) {
-                    clearTimeout(tooltipTimeout);
-                    tooltipTimeout = null;
-                }
-                
-                // Set active tooltip
-                activeTooltip = element;
-                
-                // Update tooltip content
-                tooltipMobile.innerHTML = tooltipText;
-                tooltipMobile.style.display = 'block';
-                
-                // Add visual feedback to the icon
-                element.style.backgroundColor = 'rgba(6, 182, 212, 0.4)';
-                element.style.transform = 'scale(1.1)';
-                
-                // Position the tooltip after a brief delay to ensure proper sizing
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        const rect = element.getBoundingClientRect();
-                        const tooltipRect = tooltipMobile.getBoundingClientRect();
-                        
-                        let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
-                        let top = rect.top - tooltipRect.height - 15;
-                        
-                        // Adjust if tooltip goes off screen horizontally
-                        const margin = 10;
-                        if (left < margin) {
-                            left = margin;
-                        } else if (left + tooltipRect.width > window.innerWidth - margin) {
-                            left = window.innerWidth - tooltipRect.width - margin;
-                        }
-                        
-                        // Adjust if tooltip goes off screen vertically
-                        if (top < margin) {
-                            top = rect.bottom + 15;
-                        }
-                        
-                        tooltipMobile.style.left = left + 'px';
-                        tooltipMobile.style.top = top + 'px';
-                        tooltipMobile.classList.add('show');
-                    });
-                });
+
+            // If this tooltip is already active, hide it
+            if (activeTooltip === this) {
+              hideMobileTooltip();
+              return;
             }
-            
-            function hideMobileTooltip() {
-                if (tooltipMobile && activeTooltip) {
-                    tooltipMobile.classList.remove('show');
-                    
-                    // Reset icon appearance
-                    if (activeTooltip) {
-                        activeTooltip.style.backgroundColor = '';
-                        activeTooltip.style.transform = '';
-                    }
-                    
-                    setTimeout(() => {
-                        if (tooltipMobile) {
-                            tooltipMobile.style.display = 'none';
-                        }
-                    }, 200);
-                    
-                    activeTooltip = null;
-                }
-                
-                // Clear any pending timeouts
-                if (tooltipTimeout) {
-                    clearTimeout(tooltipTimeout);
-                    tooltipTimeout = null;
-                }
+
+            showMobileTooltip(this, e);
+          });
+
+          // Click events as secondary trigger
+          icon.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Clear any existing timeout
+            if (tooltipTimeout) {
+              clearTimeout(tooltipTimeout);
+              tooltipTimeout = null;
             }
+
+            // If this tooltip is already active, hide it
+            if (activeTooltip === this) {
+              hideMobileTooltip();
+              return;
+            }
+
+            showMobileTooltip(this, e);
+          });
+
+          // Mouse events for desktop only
+          icon.addEventListener("mouseenter", function (e) {
+            if (window.innerWidth > 768 && !("ontouchstart" in window)) {
+              showMobileTooltip(this, e);
+            }
+          });
+
+          icon.addEventListener("mouseleave", function () {
+            if (window.innerWidth > 768 && !("ontouchstart" in window)) {
+              // Add a small delay for desktop to allow moving to tooltip
+              tooltipTimeout = setTimeout(() => {
+                hideMobileTooltip();
+              }, 300);
+            }
+          });
         });
+
+        // Allow hovering over tooltip on desktop
+        if (tooltipMobile) {
+          tooltipMobile.addEventListener("mouseenter", function () {
+            if (tooltipTimeout) {
+              clearTimeout(tooltipTimeout);
+              tooltipTimeout = null;
+            }
+          });
+
+          tooltipMobile.addEventListener("mouseleave", function () {
+            if (window.innerWidth > 768 && !("ontouchstart" in window)) {
+              hideMobileTooltip();
+            }
+          });
+
+          // Prevent tooltip from closing when clicked
+          tooltipMobile.addEventListener("touchstart", function (e) {
+            e.stopPropagation();
+          });
+
+          tooltipMobile.addEventListener("click", function (e) {
+            e.stopPropagation();
+          });
+        }
+
+        // Hide tooltip when touching/clicking elsewhere (with delay to prevent conflicts)
+        document.addEventListener("touchstart", function (e) {
+          if (
+            !e.target.closest(".info-icon") &&
+            !e.target.closest(".tooltip-mobile")
+          ) {
+            setTimeout(() => {
+              hideMobileTooltip();
+            }, 100);
+          }
+        });
+
+        document.addEventListener("click", function (e) {
+          if (
+            !e.target.closest(".info-icon") &&
+            !e.target.closest(".tooltip-mobile")
+          ) {
+            setTimeout(() => {
+              hideMobileTooltip();
+            }, 100);
+          }
+        });
+
+        // Hide on scroll
+        let scrollTimeout;
+        window.addEventListener("scroll", function () {
+          if (activeTooltip) {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+              hideMobileTooltip();
+            }, 150);
+          }
+        });
+
+        function showMobileTooltip(element, event) {
+          const tooltipText = element.getAttribute("data-tooltip");
+          if (!tooltipText) return;
+
+          // Clear any timeouts
+          if (tooltipTimeout) {
+            clearTimeout(tooltipTimeout);
+            tooltipTimeout = null;
+          }
+
+          // Set active tooltip
+          activeTooltip = element;
+
+          // Update tooltip content
+          tooltipMobile.innerHTML = tooltipText;
+          tooltipMobile.style.display = "block";
+
+          // Add visual feedback to the icon
+          element.style.backgroundColor = "rgba(6, 182, 212, 0.4)";
+          element.style.transform = "scale(1.1)";
+
+          // Position the tooltip after a brief delay to ensure proper sizing
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              const rect = element.getBoundingClientRect();
+              const tooltipRect = tooltipMobile.getBoundingClientRect();
+
+              let left = rect.left + rect.width / 2 - tooltipRect.width / 2;
+              let top = rect.top - tooltipRect.height - 15;
+
+              // Adjust if tooltip goes off screen horizontally
+              const margin = 10;
+              if (left < margin) {
+                left = margin;
+              } else if (
+                left + tooltipRect.width >
+                window.innerWidth - margin
+              ) {
+                left = window.innerWidth - tooltipRect.width - margin;
+              }
+
+              // Adjust if tooltip goes off screen vertically
+              if (top < margin) {
+                top = rect.bottom + 15;
+              }
+
+              tooltipMobile.style.left = left + "px";
+              tooltipMobile.style.top = top + "px";
+              tooltipMobile.classList.add("show");
+            });
+          });
+        }
+
+        function hideMobileTooltip() {
+          if (tooltipMobile && activeTooltip) {
+            tooltipMobile.classList.remove("show");
+
+            // Reset icon appearance
+            if (activeTooltip) {
+              activeTooltip.style.backgroundColor = "";
+              activeTooltip.style.transform = "";
+            }
+
+            setTimeout(() => {
+              if (tooltipMobile) {
+                tooltipMobile.style.display = "none";
+              }
+            }, 200);
+
+            activeTooltip = null;
+          }
+
+          // Clear any pending timeouts
+          if (tooltipTimeout) {
+            clearTimeout(tooltipTimeout);
+            tooltipTimeout = null;
+          }
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
